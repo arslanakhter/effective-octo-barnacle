@@ -1,11 +1,13 @@
 'use client'
 
-import { Card } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { useState } from 'react'
-import { Check, X } from 'lucide-react'
+import { Check } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
 export default function Insurance() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -15,23 +17,25 @@ export default function Insurance() {
   )
 
   return (
-    <div className="min-h-screen bg-background">
+    <div>
       {/* Hero Section */}
-      <section className="py-16 md:py-24 px-4 md:px-6 bg-primary text-primary-foreground">
-        <div className="container mx-auto text-center space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold">Insurance & Payments</h1>
-          <p className="text-lg opacity-90 max-w-2xl mx-auto">
-            We accept most major insurance plans. Making quality dental care affordable.
-          </p>
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">Insurance & Payments</h1>
+            <p className="text-xl text-muted-foreground">
+              We accept most major insurance plans. Making quality dental care affordable.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Insurance Section */}
-      <section className="py-16 md:py-24 px-4 md:px-6">
-        <div className="container mx-auto space-y-12">
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 space-y-12">
           {/* Search */}
-          <div className="max-w-md mx-auto">
-            <Label htmlFor="search" className="block mb-2">
+          <div className="max-w-md mx-auto w-full">
+            <Label htmlFor="search" className="block mb-2 font-semibold">
               Search Insurance Provider
             </Label>
             <Input
@@ -43,18 +47,22 @@ export default function Insurance() {
           </div>
 
           {/* Insurance Providers */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((provider) => (
-              <Card key={provider.id} className="p-6">
-                <h3 className="font-semibold mb-4">{provider.name}</h3>
-                <div className="space-y-2">
-                  {provider.services.map((service) => (
-                    <div key={service} className="flex items-center space-x-2 text-sm">
-                      <Check className="h-4 w-4 text-green-600 flex-shrink-0" />
-                      <span>{service}</span>
-                    </div>
-                  ))}
-                </div>
+              <Card key={provider.id} className="border-border/50 hover:shadow-md transition-all">
+                <CardHeader>
+                  <CardTitle className="text-lg">{provider.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {provider.services.map((service) => (
+                      <div key={service} className="flex items-center space-x-2 text-sm">
+                        <Check className="h-4 w-4 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">{service}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
               </Card>
             ))}
           </div>
@@ -66,21 +74,25 @@ export default function Insurance() {
           )}
 
           {/* Coverage Info */}
-          <div className="mt-12 space-y-6">
-            <h2 className="text-2xl font-bold">Coverage Information</h2>
+          <div className="space-y-6">
+            <h2 className="text-4xl font-bold">Coverage Information</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {coverageTypes.map((type) => (
-                <Card key={type.title} className="p-6">
-                  <h3 className="text-lg font-semibold mb-2">{type.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-4">{type.description}</p>
-                  <div className="space-y-2">
-                    {type.coverage.map((item) => (
-                      <div key={item} className="flex items-start space-x-2 text-sm">
-                        <Check className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
+                <Card key={type.title} className="border-border/50">
+                  <CardHeader>
+                    <CardTitle className="text-lg">{type.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground text-sm">{type.description}</p>
+                    <div className="space-y-2">
+                      {type.coverage.map((item) => (
+                        <div key={item} className="flex items-start space-x-2 text-sm">
+                          <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                          <span className="text-muted-foreground">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
                 </Card>
               ))}
             </div>
@@ -88,12 +100,16 @@ export default function Insurance() {
 
           {/* Payment Options */}
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold">Payment Options</h2>
+            <h2 className="text-4xl font-bold">Payment Options</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {paymentOptions.map((option) => (
-                <Card key={option.title} className="p-6">
-                  <h3 className="text-lg font-semibold mb-2">{option.title}</h3>
-                  <p className="text-muted-foreground text-sm">{option.description}</p>
+                <Card key={option.title} className="border-border/50">
+                  <CardHeader>
+                    <CardTitle className="text-lg">{option.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground text-sm">{option.description}</p>
+                  </CardContent>
                 </Card>
               ))}
             </div>
@@ -101,26 +117,33 @@ export default function Insurance() {
 
           {/* FAQ */}
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
-            <div className="space-y-4">
-              {faqs.map((faq) => (
-                <Card key={faq.id} className="p-6">
-                  <h3 className="font-semibold mb-2">{faq.question}</h3>
-                  <p className="text-muted-foreground text-sm">{faq.answer}</p>
-                </Card>
-              ))}
-            </div>
+            <h2 className="text-4xl font-bold">Frequently Asked Questions</h2>
+            <Card className="border-border/50">
+              <CardContent className="p-0">
+                <div className="space-y-4">
+                  {faqs.map((faq, index) => (
+                    <div key={faq.id} className={`p-6 ${index !== faqs.length - 1 ? 'border-b border-border' : ''}`}>
+                      <h3 className="font-semibold text-lg text-foreground mb-2">{faq.question}</h3>
+                      <p className="text-muted-foreground text-sm">{faq.answer}</p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* CTA */}
-          <div className="mt-12 text-center space-y-4">
-            <h2 className="text-2xl font-bold">Questions About Your Coverage?</h2>
-            <p className="text-muted-foreground">
+          <div className="mt-12 text-center space-y-4 py-12">
+            <h2 className="text-4xl font-bold">Questions About Your Coverage?</h2>
+            <p className="text-lg text-muted-foreground">
               Our team can help verify your benefits and answer any insurance questions.
             </p>
-            <a href="/contact">
-              <Button size="lg">Contact Our Team</Button>
-            </a>
+            <Link href="/contact">
+              <Button size="lg">
+                Contact Our Team
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
