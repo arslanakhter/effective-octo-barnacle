@@ -1,48 +1,86 @@
-'use client'
-
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import {
-  Stethoscope,
-  Sparkles,
-  Award,
-  Shield,
-  Clock,
-  Users,
-  Zap,
-  Smile,
-} from 'lucide-react'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { ArrowRight } from 'lucide-react'
+
+const services = [
+  {
+    title: 'General Dentistry',
+    slug: 'general',
+    description: 'Comprehensive family dental care including cleanings, exams, and preventive treatments',
+    details: 'Regular check-ups, professional cleanings, cavity fillings, and preventive care.',
+  },
+  {
+    title: 'Cosmetic Dentistry',
+    slug: 'cosmetic',
+    description: 'Transform your smile with teeth whitening, veneers, and smile makeovers',
+    details: 'Teeth whitening, porcelain veneers, composite bonding, and smile design.',
+  },
+  {
+    title: 'Dental Implants',
+    slug: 'implants',
+    description: 'Permanent tooth replacement solutions with natural-looking results',
+    details: 'Single implants, implant bridges, and full mouth implant restorations.',
+  },
+  {
+    title: 'Crowns & Bridges',
+    slug: 'crowns',
+    description: 'Durable restorations for damaged or missing teeth',
+    details: 'Porcelain crowns, bridges, and inlays for lasting results.',
+  },
+  {
+    title: 'Root Canal Therapy',
+    slug: 'root-canal',
+    description: 'Advanced treatment to save teeth and eliminate pain',
+    details: 'Endodontic treatment using advanced technologies.',
+  },
+  {
+    title: 'Pediatric Dentistry',
+    slug: 'pediatric',
+    description: 'Specialized care for children in a fun, comfortable environment',
+    details: 'Preventive care, sealants, and kid-friendly treatments.',
+  },
+]
+
+export const metadata = {
+  title: 'Services - Wisconsin Family Dental',
+  description: 'Explore our comprehensive dental services including general, cosmetic, and implant dentistry.',
+}
 
 export default function Services() {
   return (
-    <div className="min-h-screen bg-background">
+    <div>
       {/* Hero Section */}
-      <section className="py-16 md:py-24 px-4 md:px-6 bg-primary text-primary-foreground">
-        <div className="container mx-auto text-center space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold">Our Services</h1>
-          <p className="text-lg opacity-90 max-w-2xl mx-auto">
-            Comprehensive dental care for every age and need
-          </p>
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Dental Services</h1>
+            <p className="text-xl text-muted-foreground">
+              Comprehensive solutions tailored to your needs
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 md:py-24 px-4 md:px-6">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {services.map((service) => (
-              <Card key={service.id} className="p-6 hover:shadow-lg transition-all">
-                <service.icon className="h-12 w-12 text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{service.name}</h3>
-                <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                  {service.description}
-                </p>
-                <Link href={`/services/${service.id}`}>
-                  <Button variant="link" className="p-0 h-auto">
-                    Learn More →
-                  </Button>
-                </Link>
+              <Card key={service.slug} className="hover:shadow-md transition-all duration-300 border-border/50 flex flex-col">
+                <CardHeader>
+                  <CardTitle className="text-2xl">{service.title}</CardTitle>
+                  <CardDescription className="text-base mt-2">{service.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">{service.details}</p>
+                  <Link href="/contact">
+                    <Button variant="default" className="w-full">
+                      Learn More
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </CardContent>
               </Card>
             ))}
           </div>
@@ -50,80 +88,21 @@ export default function Services() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 px-4 md:px-6 bg-card/50">
-        <div className="container mx-auto text-center space-y-6 max-w-2xl">
-          <h2 className="text-3xl font-bold">
-            Don't see what you're looking for?
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Contact us to discuss your specific dental needs. Our team is here to help.
-          </p>
-          <Link href="/contact">
-            <Button size="lg">
-              Schedule Consultation
-            </Button>
-          </Link>
+      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <h2 className="text-4xl md:text-5xl font-bold">Not sure which service you need?</h2>
+            <p className="text-lg opacity-90">
+              Schedule a consultation and we'll help determine the best treatment plan for you.
+            </p>
+            <Link href="/contact">
+              <Button size="lg" variant="secondary" className="text-base">
+                Schedule Consultation
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
   )
 }
-
-const services = [
-  {
-    id: 'exam-cleaning',
-    name: 'Exams & Cleanings',
-    description:
-      'Regular dental exams and professional cleanings are the foundation of good oral health. We recommend visits every 6 months.',
-    icon: Stethoscope,
-  },
-  {
-    id: 'cosmetic',
-    name: 'Cosmetic Dentistry',
-    description:
-      'Enhance your smile with teeth whitening, veneers, bonding, and other cosmetic procedures.',
-    icon: Sparkles,
-  },
-  {
-    id: 'implants',
-    name: 'Dental Implants',
-    description:
-      'Permanent tooth replacement that looks and feels natural. Perfect for missing teeth.',
-    icon: Award,
-  },
-  {
-    id: 'crowns',
-    name: 'Crowns & Bridges',
-    description:
-      'Restore damaged or missing teeth with durable crowns and bridges tailored to your smile.',
-    icon: Shield,
-  },
-  {
-    id: 'root-canal',
-    name: 'Root Canal Therapy',
-    description:
-      'Save your tooth with advanced root canal treatment. Fast, effective pain relief.',
-    icon: Zap,
-  },
-  {
-    id: 'orthodontics',
-    name: 'Orthodontics',
-    description:
-      'Straighten your teeth with modern braces and clear aligner options.',
-    icon: Smile,
-  },
-  {
-    id: 'extractions',
-    name: 'Extractions',
-    description:
-      'When necessary, we perform gentle tooth extractions with minimal discomfort.',
-    icon: Clock,
-  },
-  {
-    id: 'nightguard',
-    name: 'Nightguards',
-    description:
-      'Custom-fitted nightguards to protect your teeth from grinding and clenching.',
-    icon: Users,
-  },
-]
