@@ -1,0 +1,7 @@
+{
+  "name": "dental-clinic-website",
+  "compatibility_date": "2025-10-11",
+  "assets": {
+    "directory": "./dist"
+  }
+}
