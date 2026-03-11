@@ -1,99 +1,151 @@
-'use client'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Heart, Award, Users, TrendingUp } from 'lucide-react'
 
-import { Card } from '@/components/ui/card'
-import { Award, Heart, Lightbulb } from 'lucide-react'
+const values = [
+  {
+    icon: Heart,
+    title: 'Patient-Centered Care',
+    description: 'Your comfort and well-being are always our top priority',
+  },
+  {
+    icon: Award,
+    title: 'Clinical Excellence',
+    description: 'Continuous learning and improvement in our practice',
+  },
+  {
+    icon: Users,
+    title: 'Community Focus',
+    description: 'Proud to serve Wisconsin families for over 15 years',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Innovation',
+    description: 'Utilizing the latest technology for better outcomes',
+  },
+]
+
+const team = [
+  {
+    name: 'Dr. Sarah Johnson, DDS',
+    role: 'Lead Dentist',
+    bio: '15+ years of experience in comprehensive dentistry with a focus on patient comfort and education.',
+  },
+  {
+    name: 'Dr. Michael Chen, DDS',
+    role: 'Cosmetic Specialist',
+    bio: 'Expert in aesthetic dentistry and smile makeovers, passionate about creating beautiful results.',
+  },
+  {
+    name: 'Dr. Emily Rodriguez, DDS',
+    role: 'Pediatric Dentist',
+    bio: 'Specializes in children\'s dentistry, making dental visits fun and stress-free for young patients.',
+  },
+]
+
+export const metadata = {
+  title: 'About Us - Wisconsin Family Dental',
+  description: 'Learn about our experienced dentists and commitment to excellent patient care.',
+}
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-background">
+    <div>
       {/* Hero Section */}
-      <section className="py-16 md:py-24 px-4 md:px-6 bg-primary text-primary-foreground">
-        <div className="container mx-auto text-center space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold">About Wisconsin Family Dental</h1>
-          <p className="text-lg opacity-90 max-w-2xl mx-auto">
-            Serving families with compassion and excellence since 2005
-          </p>
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">About Wisconsin Dental</h1>
+            <p className="text-xl text-muted-foreground">
+              Dedicated to your dental health and beautiful smiles
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-16 md:py-24 px-4 md:px-6">
-        <div className="container mx-auto max-w-3xl space-y-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {values.map((value) => (
-              <Card key={value.title} className="p-6 text-center">
-                <value.icon className="h-12 w-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                <p className="text-muted-foreground text-sm">{value.description}</p>
+      {/* Story Section */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+            <div>
+              <h2 className="text-4xl font-bold mb-6">Our Story</h2>
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  Wisconsin Family Dental was founded with a simple mission: to provide compassionate, high-quality dental care to families across Wisconsin. For over 15 years, we've been committed to creating beautiful, healthy smiles while making every patient feel welcome and comfortable.
+                </p>
+                <p>
+                  Our practice was built on the belief that everyone deserves access to excellent dental care in a friendly, modern environment. From routine cleanings to complex cosmetic procedures, we have the expertise and technology to meet all your dental needs.
+                </p>
+                <p>
+                  We continuously invest in the latest dental technology and ongoing education to ensure our team stays at the forefront of modern dentistry. Your smile is our success story.
+                </p>
+              </div>
+            </div>
+            <div className="rounded-lg overflow-hidden bg-gradient-to-br from-primary/10 to-primary/5 h-96 flex items-center justify-center">
+              <div className="text-center">
+                <div className="h-32 w-32 rounded-full bg-primary/20 mx-auto flex items-center justify-center">
+                  <Users className="h-16 w-16 text-primary/40" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Our Core Values</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              The principles that guide everything we do
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {values.map((value, index) => {
+              const Icon = value.icon
+              return (
+                <Card key={index} className="text-center border-border/50">
+                  <CardContent className="pt-8 pb-6">
+                    <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                      <Icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-3 text-foreground">{value.title}</h3>
+                    <p className="text-sm text-muted-foreground">{value.description}</p>
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Meet Our Team</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Experienced professionals dedicated to your care
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {team.map((member, index) => (
+              <Card key={index} className="border-border/50 hover:shadow-md transition-all">
+                <CardContent className="pt-6">
+                  <div className="h-32 w-32 rounded-full bg-primary/10 mx-auto mb-6 flex items-center justify-center text-primary/30">
+                    <Users className="h-16 w-16" />
+                  </div>
+                  <h3 className="font-semibold text-lg mb-2 text-center text-foreground">{member.name}</h3>
+                  <p className="text-primary text-center mb-3 text-sm font-medium">{member.role}</p>
+                  <p className="text-muted-foreground text-center text-sm leading-relaxed">{member.bio}</p>
+                </CardContent>
               </Card>
             ))}
-          </div>
-
-          <div className="space-y-6">
-            <h2 className="text-3xl font-bold">Our Story</h2>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              Wisconsin Family Dental was founded with a simple mission: to provide exceptional dental care in a welcoming, comfortable environment. Over the past years, we've had the privilege of serving thousands of families and individuals throughout Wisconsin.
-            </p>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              Our team of experienced dentists and caring staff members are committed to creating positive experiences that help patients feel confident about their oral health. We believe that everyone deserves access to quality dental care, and we work hard to make that a reality.
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            <h2 className="text-3xl font-bold">Our Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {team.map((member) => (
-                <Card key={member.name} className="p-6">
-                  <h3 className="text-xl font-semibold">{member.name}</h3>
-                  <p className="text-primary font-medium mb-2">{member.role}</p>
-                  <p className="text-muted-foreground text-sm">{member.bio}</p>
-                </Card>
-              ))}
-            </div>
           </div>
         </div>
       </section>
     </div>
   )
 }
-
-const values = [
-  {
-    icon: Heart,
-    title: 'Compassion',
-    description: 'We care about your comfort and well-being throughout your treatment journey.',
-  },
-  {
-    icon: Award,
-    title: 'Excellence',
-    description: 'We pursue the highest standards of quality in everything we do.',
-  },
-  {
-    icon: Lightbulb,
-    title: 'Innovation',
-    description: 'We embrace modern techniques and technologies to serve you better.',
-  },
-]
-
-const team = [
-  {
-    name: 'Dr. James Anderson',
-    role: 'Founder & Lead Dentist',
-    bio: 'DDS with 20+ years of experience in family and cosmetic dentistry. Known for his gentle approach and commitment to patient education.',
-  },
-  {
-    name: 'Dr. Sarah Martinez',
-    role: 'Cosmetic Dentistry Specialist',
-    bio: 'DDS, MS in Prosthodontics. Specializes in smile makeovers and advanced cosmetic procedures with attention to detail.',
-  },
-  {
-    name: 'Dr. Michael Chen',
-    role: 'Implant Specialist',
-    bio: 'DDS with advanced training in dental implantology. Dedicated to restoring smiles with permanent solutions.',
-  },
-  {
-    name: 'Dental Hygienist Team',
-    role: 'Professional Care Team',
-    bio: 'Our experienced hygienists provide thorough cleanings and preventive care to keep your smile healthy.',
-  },
-]

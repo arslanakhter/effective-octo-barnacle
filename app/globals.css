@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern Minimal Design System for Dental Clinic */
+
+@layer base {
+  :root {
+    /* Primary: Warm Off-white/Cream Background */
+    --background: 40 30% 97%;
+    --foreground: 40 10% 15%;
+
+    /* Cards: Pure white with subtle contrast */
+    --card: 0 0% 100%;
+    --card-foreground: 40 10% 15%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 40 10% 15%;
+
+    /* Primary: Professional Teal/Blue */
+    --primary: 200 70% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: Subtle gray */
+    --secondary: 40 20% 92%;
+    --secondary-foreground: 200 70% 45%;
+
+    /* Muted: Light neutral tones */
+    --muted: 40 20% 90%;
+    --muted-foreground: 40 10% 45%;
+
+    /* Accent: Warm accent for CTAs */
+    --accent: 28 85% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Border & Input */
+    --border: 40 20% 88%;
+    --input: 40 20% 88%;
+    --ring: 200 70% 45%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 40 15% 12%;
+    --foreground: 40 30% 95%;
+
+    --card: 40 20% 18%;
+    --card-foreground: 40 30% 95%;
+
+    --popover: 40 20% 18%;
+    --popover-foreground: 40 30% 95%;
+
+    --primary: 200 75% 55%;
+    --primary-foreground: 40 15% 12%;
+
+    --secondary: 40 20% 25%;
+    --secondary-foreground: 200 75% 55%;
+
+    --muted: 40 20% 25%;
+    --muted-foreground: 40 15% 55%;
+
+    --accent: 28 85% 60%;
+    --accent-foreground: 40 15% 12%;
+
+    --destructive: 0 63% 40%;
+    --destructive-foreground: 40 30% 95%;
+
+    --border: 40 20% 22%;
+    --input: 40 20% 22%;
+    --ring: 200 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
